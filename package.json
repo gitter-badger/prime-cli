@@ -1,6 +1,6 @@
 {
   "name": "prime-cli",
-  "version": "0.9.10",
+  "version": "1.0.0",
   "author": "Prime Author",
   "description": "Command Line Interface For Prime Framework",
   "license": "MIT",
