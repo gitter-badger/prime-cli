@@ -1,0 +1,20 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="home-page">
+    <template>
+        <style>
+        </style>
+        <h2>Hello [[prop1]]</h2>
+    </template>
+    <script>
+        Polymer({
+            is: 'home-page',
+            properties:{
+                prop1: {
+                    type: String,
+                    value: 'HOME PAGE',
+                }
+            }
+        })
+    </script>
+</dom-module>

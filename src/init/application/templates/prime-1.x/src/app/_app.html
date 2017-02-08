@@ -1,0 +1,54 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animated-pages.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../pages/home/home-page.html">
+<dom-module id="<%= elementName %>">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    
+    <app-location route="{{route}}" use-hash-as-path></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}">
+    </app-route>
+    <neon-animated-pages attr-for-selected="name" selected="[[page]]" selected-attribute="visible">
+      <home-page name="home" route="[[subroute]]"></home-page>
+    </neon-animated-pages>
+  </template>
+
+  <script>
+    Polymer({
+      is: '<%= elementName %>',
+      properties: {
+          page: {
+              type: String,
+              reflectToAttribute: true,
+              observer: '_pageChanged'
+          }
+      },
+      observers: [
+          '_routePageChanged(routeData.page)'
+      ],
+      created:function(){
+          window.performance && performance.mark && performance.mark('<%= elementName %>.created');
+          // Custom elements polyfill safe way to indicate an element has been upgraded.
+          this.removeAttribute('unresolved');
+      },
+      _routePageChanged: function(page) {
+          this.page = page || 'home';
+      },
+      _pageChanged: function(page) {
+          // Load page import on demand. Show 404 page if fails
+          var resolvedPageUrl = this.resolveUrl('../pages/' + page + '/' + page + '-page.html');
+          this.importHref(resolvedPageUrl, null, null, true);
+      },
+    });
+  </script>
+</dom-module>

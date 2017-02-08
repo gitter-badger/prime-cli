@@ -1,0 +1,17 @@
+{
+    "rootDir":"src",
+    "outDir":"www",
+    "entrypoint": "index.html",
+    "shell": "app/<%= elementName %>.html",
+    "fragments": [
+        "pages/home/home-page.html"
+    ],
+    "sources": [
+        "app/**/*"
+    ],
+    "extraDependencies": [
+        "manifest.json",
+        "bower_components/polyfill/dist/polyfill.min.js",
+        "bower_components/webcomponentsjs/webcomponents-lite.min.js"
+    ]
+}

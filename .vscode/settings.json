@@ -1,0 +1,15 @@
+{
+    "typescript.check.tscVersion": false,
+    "files.exclude": {
+    "**/.git": false,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true
+  }
+,
+"editor.tabSize": 4,
+"git.confirmSync": false,
+"window.zoomLevel": 1,
+"typescript.check.workspaceVersion": false,
+"java.errors.incompleteClasspath.severity": "ignore"
+}

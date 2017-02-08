@@ -1,0 +1,16 @@
+{
+  "name": "<%= name %>",
+<% if (description) { -%>  "description": "<%= description %>",
+<% } -%>
+  "main": "index.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "app-route": "PolymerElements/app-route#^0.9.0",
+    "neon-animation": "PolymerElements/neon-animation#^1.2.4",
+    "polyfill": "*"
+  },
+  "devDependencies": {
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}
