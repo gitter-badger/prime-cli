@@ -56,6 +56,7 @@
     "findup-sync": "^0.4.3",
     "fs-extra": "^2.0.0",
     "github": "7.2.1",
+    "glob": "^7.1.1",
     "gulp-babel": "^6.1.2",
     "gulp-if": "^2.0.2",
     "gunzip-maybe": "^1.3.1",
