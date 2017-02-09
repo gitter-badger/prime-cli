@@ -21,7 +21,7 @@ export function waitFor(stream: NodeJS.ReadableStream):
     Promise<NodeJS.ReadableStream> {
   return new Promise<NodeJS.ReadableStream>((resolve, reject) => {
     stream.on('end', resolve);
-    stream.on('error', (reason:any)=>{
+    stream.on('error', (reason: any) => {
       logger.error(reason);
       reject();
     });

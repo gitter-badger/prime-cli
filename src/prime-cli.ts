@@ -47,7 +47,7 @@ function parseCLIArgs(commandOptions: any): {[name: string]: string} {
     return parsedOptions;
 }
 
-export class PrimeCli{
+export class PrimeCli {
     commands: Map<string, Command> = new Map();
     args: string[];
     defaultConfigOptions: ProjectOptions;
@@ -67,7 +67,6 @@ export class PrimeCli{
 
         this.args = args;
         logger.debug('got args:', {args: args});
-
         if (typeof configOptions !== 'undefined') {
             this.defaultConfigOptions = configOptions;
             logger.debug(
@@ -84,7 +83,6 @@ export class PrimeCli{
                 logger.debug('no prime.json file found, no config loaded');
             }
         }
-        
         this.addCommand(new AnalyzeCommand());
         this.addCommand(new BuildCommand());
         this.addCommand(new HelpCommand(this.commands));
@@ -94,28 +92,27 @@ export class PrimeCli{
         this.addCommand(new ServeCommand());
         this.addCommand(new PlatformsCommand());
         this.addCommand(new PluginCommand());
-
         this.shouldParseArgs = this._shouldParseArgs();
     }
     addCommand(command: Command) {
         logger.debug('adding command', command.name);
         this.commands.set(command.name, command);
     }
-    getCommandsWithParsedArgs(): string[]{
+    getCommandsWithParsedArgs(): string[] {
         let parsedCommandsName: string[] = [];
-        this.commands.forEach((command)=>{
-            if(command.parseArgs){
+        this.commands.forEach((command) => {
+            if (command.parseArgs) {
                 parsedCommandsName.push(command.name);
             }
         });
         return parsedCommandsName;
     }
-    _shouldParseArgs(){
+    _shouldParseArgs() {
         let exceptions: string[] = this.getCommandsWithParsedArgs();
         let args = this.args;
-        if(exceptions.indexOf(args[0]) > -1){
+        if (exceptions.indexOf(args[0]) > -1) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -129,7 +126,6 @@ export class PrimeCli{
             console.log(require('../package.json').version);
             return Promise.resolve();
         }
-        
         try {
             parsedArgs = (this.shouldParseArgs) ? commandLineCommands(commandNames, this.args) : this.args;
         } catch (error) {
@@ -148,7 +144,7 @@ export class PrimeCli{
             throw error;
         }
 
-        const commandName = (this.shouldParseArgs) ? parsedArgs.command :this.args[0];
+        const commandName = (this.shouldParseArgs) ? parsedArgs.command : this.args[0];
         const commandArgs = (this.shouldParseArgs) ? parsedArgs.argv : this.args.slice(1);
         const command = this.commands.get(commandName)!;
         if (command == null)
@@ -162,7 +158,7 @@ export class PrimeCli{
         const commandOptionsRaw = commandLineArgs(commandDefinitions, commandArgs);
         const commandOptions: any = (this.shouldParseArgs) ? parseCLIArgs(commandOptionsRaw) : this.args.slice(1);
         logger.debug(`command options parsed from args:`, commandOptions);
-        
+
         const mergedConfigOptions =
             Object.assign({}, this.defaultConfigOptions, commandOptions);
 
@@ -180,6 +176,5 @@ export class PrimeCli{
 
         logger.debug('Running command...');
         return command.run(commandOptions, config);
-    
     }
 }

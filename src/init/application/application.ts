@@ -71,18 +71,18 @@ export function createApplicationGenerator(templateName: string):
       Q.fcall(() => {
         this.log('Generating cordova project...');
         // create a new cordova project in current directory.
-        return cordova.raw.create('.','com.prime.blank','PrimeDemo');
-      }).then(() =>{
+        return cordova.raw.create('.', 'com.prime.blank', 'PrimeDemo');
+      }).then(() => {
         // clean all files in www directory that created when we create cordova project.
-        del(path.join(this.destinationPath(),'www','**','*'));
+        del(path.join(this.destinationPath(), 'www', '**', '*'));
         let data = {
-          "directory": "src/bower_components/",
-          "timeout": 60000
+          directory: 'src/bower_components/',
+          timeout: 60000
         };
         // create .bowerrc file to redirect all components to src > bower_components folder.
-        this.fs.writeJSON(`${path.join(this.destinationPath(),'.bowerrc')}`, data);
+        this.fs.writeJSON(`${path.join(this.destinationPath(), '.bowerrc')}`, data);
         // create .gitignore to ignore bower_components folder.
-        this.fs.write(`${path.join(this.destinationPath(),'src','.gitignore')}`, 'bower_components');
+        this.fs.write(`${path.join(this.destinationPath(), 'src', '.gitignore')}`, 'bower_components');
         // copy all the template that selected by user.
         this.fs.copyTpl(
           `${this.templatePath()}/**/?(.)!(_)*`,
@@ -92,9 +92,7 @@ export function createApplicationGenerator(templateName: string):
             this.templatePath('src/app/_app.html'),
             `src/app/${elementName}.html`,
             this.props);
-        
       });
-      
     }
 
     install() {
