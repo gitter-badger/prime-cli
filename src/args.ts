@@ -31,7 +31,7 @@ export const globalArguments: ArgDescriptor[] = [
     group: 'global',
   },
   {
-    name: 'root',
+    name: 'rootDir',
     type: String,
     description: 'The root directory of your project. Defaults to the current' +
         ' working directory',
