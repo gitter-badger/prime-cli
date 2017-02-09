@@ -7,6 +7,7 @@ import findup = require('findup-sync');
 import * as YeomanEnvironment from 'yeoman-environment';
 import {prompt, Question as InquirerQuestion} from 'inquirer';
 import {createApplicationGenerator} from '../init/application/application';
+import {createPluginGenerator} from '../init/plugin/plugin';
 import {createGithubGenerator} from '../init/github';
 import Generator = require('yeoman-generator');
 
@@ -25,9 +26,14 @@ interface GeneratorInfo {
 }
 
 const localGenerators: {[name: string]: GeneratorInfo} = {
+  'prime-1-plugin': {
+    id: 'prime-init-prime-1-plugin:plugin',
+    description: 'A simple Prime project plugin template',
+    generator: createPluginGenerator('prime-1.x'),
+  },
   'prime-1-application': {
     id: 'prime-init-prime-1-application:app',
-    description: 'A simple Polymer 1.0 application template',
+    description: 'A simple Prime project with Polymer 1.0 application template',
     generator: createApplicationGenerator('prime-1.x'),
   },
   // TODO: Add Shop "^2.0.0" generator once Polymer 2.0 Shop template is
