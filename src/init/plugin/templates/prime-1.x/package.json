@@ -1,0 +1,28 @@
+{
+  "name": "<%= pluginName %>",
+  "version": "1.0.0",
+  "description": "A Cordova Plugin Made With Prime CLI",
+  "cordova": {
+    "id": "<%= pluginId %>",
+    "platforms": []
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "cordova"
+  ],
+  "engines": {
+    "cordovaDependencies": {
+        "1.0.0": { 
+            "cordova": ">=3.1.0" 
+        }
+    }
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    
+  }
+}

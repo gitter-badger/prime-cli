@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="<%= pluginId %>" version="0.0.1" 
+    xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name><%= pluginName %></name>
+    
+    <engines>
+      <engine name="cordova" version=">=3.1.0" /><!-- Needs cordova/urlutil -->
+    </engines>
+    <% if (platforms && platforms.android) { -%>
+    <platform name="android">
+        <js-module name="<%= mainFileName %>" src="www/<%= mainFileName %>.js">
+            <clobbers target="cordova.plugin.<%= pluginName.replace(' ','') %>" />
+        </js-module>
+
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="<%= mainFileName %>">
+                <param name="android-package" value="<%= packageName %>" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/<%= mainFileName %>.java" target-dir="src/org/apache/cordova/prime" />
+        <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
+    </platform>
+    <% } -%>
+    <% if (platforms && platforms.ios) { -%>
+    <platform name="ios">
+        <js-module name="<%= mainFileName %>" src="www/<%= mainFileName %>.js">
+            <clobbers target="cordova.plugin.<%= pluginName.replace(' ','') %>" />
+        </js-module>
+        <header-file src="src/ios/<%= mainFileName %>.h" />
+        <source-file src="src/ios/<%= mainFileName %>.m" />
+    </platform>
+    <% } -%>
+</plugin>

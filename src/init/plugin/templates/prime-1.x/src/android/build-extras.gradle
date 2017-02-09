@@ -1,0 +1,22 @@
+def packageName = getPackageName()
+
+android {
+    defaultConfig {
+        applicationId packageName
+    }
+}
+
+repositories {
+    
+}
+// you can add extra dependencies that you will use in your plugin here
+dependencies {
+    
+}
+
+def getPackageName() {
+    def config = file("res/xml/config.xml").getText()
+    def xml = new XmlParser(false, false).parseText(config)
+    def id = xml.attribute("id")
+    return id.replaceAll('-','_')
+}
