@@ -11,5 +11,7 @@
 "git.confirmSync": false,
 "window.zoomLevel": 1,
 "typescript.check.workspaceVersion": false,
-"java.errors.incompleteClasspath.severity": "ignore"
+"java.errors.incompleteClasspath.severity": "ignore",
+"editor.detectIndentation": true,
+"editor.insertSpaces": false
 }
