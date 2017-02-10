@@ -3,10 +3,10 @@
 import {Command} from './command';
 import {ProjectConfig} from 'prime-project-config';
 import * as logging from 'plylog';
-
+import {cordova} from 'cordova-lib';
 let logger = logging.getLogger('cli.command.platforms');
 
-const cordova = require('cordova-lib').cordova;
+
 
 
 export class PlatformsCommand implements Command {
