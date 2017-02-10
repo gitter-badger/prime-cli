@@ -15,16 +15,13 @@ const m = chalk.magenta;
 const CLI_TITLE = chalk.bold.underline('Prime-CLI');
 const CLI_DESCRIPTION = 'The multi-tool for Prime projects';
 const CLI_USAGE = 'Usage: \`prime <command> [options ...]\`';
-
-const HELP_HEADER = '\n' +
-  b('   /\\˜˜/   ') + m('/\\˜˜/') + b('\\   ') + '\n' +
-  b('  /__\\/   ') + m('/__\\/') + b('__\\  ') + '  ' + CLI_TITLE + '\n' +
-  b(' /\\  /   ') + m('/\\  /') + b('\\  /\\ ') + '\n' +
-  b('/__\\/   ') + m('/__\\/  ') + b('\\/__\\') + '  ' + CLI_DESCRIPTION + '\n' +
-  b('\\  /\\  ') + m('/\\  /   ') + b('/\\  /') + '\n' +
-  b(' \\/__\\') + m('/__\\/   ') + b('/__\\/ ') + '  ' + CLI_USAGE + '\n' +
-  b('  \\  ') + m('/\\  /   ') + b('/\\  /  ') + '\n' +
-  b('   \\') + m('/__\\/   ') + b('/__\\/   ') + '\n';
+const HELP_HEADER = '\n' + 
+  b('╔══════╗') + '\n' +
+  b('║   ') + m('║') + b('  ║') + '  ' + CLI_TITLE +'\n' +
+  b('║   ') + m('║') + b('  ║') + '\n' +
+  b('║  ╔═══╝') +  '  ' + CLI_DESCRIPTION + '\n' +
+  b('║  ║') + '\n' +
+  b('╚══╝') +  '      ' + CLI_USAGE + '\n';
 
   export class HelpCommand implements Command {
   name = 'help';
