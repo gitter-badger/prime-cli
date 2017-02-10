@@ -2,10 +2,11 @@
 import {Command} from './command';
 import {ProjectConfig} from 'prime-project-config';
 import * as logging from 'plylog';
+import {cordova} from 'cordova-lib';
 
 const logger = logging.getLogger('cli.command.plugin');
 const Q = require('q');
-const cordova = require('cordova-lib').cordova;
+
 
 export class PluginCommand implements Command {
     name = 'plugin';
