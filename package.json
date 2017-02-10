@@ -13,7 +13,8 @@
     "url": "git+https://github.com/muhammadsayuti/prime-cli"
   },
   "scripts": {
-    "build": "./node_modules/.bin/gulp build"
+    "build": "./node_modules/.bin/gulp build",
+    "test": "./node_modules/.bin/gulp test"
   },
   "bin": {
     "prime": "bin/prime.js"
@@ -67,8 +68,8 @@
     "polylint": "^2.10.0",
     "polymer-analyzer": "2.0.0-alpha.20",
     "polyserve": "0.16.0-prerelease.9",
-    "prime-build": "^0.7.3",
-    "prime-project-config": "0.0.3",
+    "prime-build": "0.7.4",
+    "prime-project-config": "0.0.9",
     "request": "^2.79.0",
     "resolve": "^1.2.0",
     "semver": "^5.3.0",
@@ -87,6 +88,7 @@
     "depcheck": "^0.6.7",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-eslint": "^3.0.1",
+    "gulp-mocha": "^3.0.1",
     "gulp-tslint": "^7.1.0",
     "gulp-typescript": "^3.1.4",
     "sinon": "^1.17.4",
