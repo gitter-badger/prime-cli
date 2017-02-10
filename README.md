@@ -3,7 +3,7 @@
 ## Prime-CLI
 
 [![Build Status](https://travis-ci.org/muhammadsayuti/prime-cli.svg?branch=master)](https://travis-ci.org/muhammadsayuti/prime-cli)
-
+[![Build status](https://ci.appveyor.com/api/projects/status/su0gdu5hn40nws3x/branch/master?svg=true)](https://ci.appveyor.com/project/muhammadsayuti/prime-cli/branch/master)
 
 A command-line tool for Prime projects.
 
