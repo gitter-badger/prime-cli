@@ -2,7 +2,7 @@ import * as chalk from 'chalk';
 import * as path from 'path';
 import Generator = require('yeoman-generator');
 import * as del from 'del';
-const cordova = require('cordova-lib').cordova;
+import {cordova} from 'cordova-lib';
 const Q = require('q');
 /**
  * Returns a Yeoman Generator constructor that can be passed to yeoman to be
