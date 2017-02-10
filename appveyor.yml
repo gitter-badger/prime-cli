@@ -11,21 +11,13 @@ install:
   # install modules. Use --force to workaround permissions issues on Windows
   - npm install --force
 
-platform:
-  - x86
-  - Any CPU
-
-configuration:
-  - Debug
-  - Release
-  
 # Post-install test scripts.
-build_script:
+test_script:
   # Output useful info for debugging.
   - node --version
   - npm --version
   # run tests
-  - npm run build
+  - npm run test
 
 # Don't actually build.
-# build: off
+build: off
