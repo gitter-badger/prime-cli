@@ -1,4 +1,4 @@
-/*global cordova, module*/
+/*global cordova, module, require*/
 
 module.exports = {
     greet: function (name, successCallback, errorCallback) {
