@@ -128,9 +128,14 @@ export function createPluginGenerator(_templateName: string):
           `${this.templatePath()}/**/?(.)!(_)*`,
           this.destinationPath(),
           this.props);
+        this.fs.copyTpl(
+          `${this.templatePath()}/www/_main.js`,
+          `www/${fileName}.js`,
+          this.props);
         platforms = Object.keys(platforms);
         platforms.forEach((platform: string) => {
           glob(this.templatePath(`src/${platform}/*`),{},(_err,files) => {
+
             files.forEach((file: string) => {
               let ext = path.extname(file);
               if(!ext.includes('gradle')) {
