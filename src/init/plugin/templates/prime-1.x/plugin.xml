@@ -7,24 +7,24 @@
     <engines>
       <engine name="cordova" version=">=3.1.0" /><!-- Needs cordova/urlutil -->
     </engines>
-    <% if (platforms && platforms.android) { -%>
-    <platform name="android">
+    
+    <% if (platforms && platforms.android) { -%><platform name="android">
         <js-module name="<%= mainFileName %>" src="www/<%= mainFileName %>.js">
             <clobbers target="cordova.plugin.<%= pluginName.replace(' ','') %>" />
         </js-module>
 
         <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="<%= mainFileName %>">
+            <feature name="<%= pluginName.replace(' ','') %>">
                 <param name="android-package" value="<%= packageName %>" />
             </feature>
         </config-file>
 
-        <source-file src="src/android/<%= mainFileName %>.java" target-dir="src/org/apache/cordova/prime" />
+        <source-file src="src/android/<%= mainFileName %>.java" target-dir="src/<%= packageName.replace('.','/') %>" />
         <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
     </platform>
     <% } -%>
-    <% if (platforms && platforms.ios) { -%>
-    <platform name="ios">
+    
+    <% if (platforms && platforms.ios) { -%><platform name="ios">
         <js-module name="<%= mainFileName %>" src="www/<%= mainFileName %>.js">
             <clobbers target="cordova.plugin.<%= pluginName.replace(' ','') %>" />
         </js-module>
