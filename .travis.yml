@@ -2,6 +2,9 @@ language: node_js
 node_js:
 - '6.1'
 sudo: false
+env:
+  global:
+    secure: HkF+F/c5Z21Sflsz89eyBQlqji7lXsVnAPmVlUJrrefd8ouEASrZSXvz5JQnFzysOjrWluId0yAhHhOJawuwk9VhZwt7Allr2nPEgZ9HbORlSUHnIYEfK8KiwPOZirbl+uN4dViFhUo6HJBbj4AVwgmYTtzXuUGX1pVFxK4NKRpHQ3W/WMzCTzzJ6lu6QOKw+hFx/LqKx/eVgs5qlcsYh3//H++YlEvhsQBFR/jJVYiYiJfSJ9B09M3liKhz+yEUspfxDkmxtd5yeeGfI0fg+R0m277JRhJndOrQGEGoSXWmdl9Xucwy6dXwCm1BcuiH4RTKFzGNu0lo6jSFpmGuX9brDASZDz+siyy5PKv4lYT6MR8yqF0+kG9RrgQgdm78SeFDBRwTbnWvBv6iOkzKMZlrqQ1ANlBciZ72jOUQGLEXJCx/w1DLJr5gWmbzZ1GbB5nvP64fuqtB0qQTKc8keOlz9VKzGf0LYZfmPg6dHYi8tGrhMrW6rzoLaqYg+9B/LyexsNfiVf9lauvYhEK4MlhvC7PYfmGthAcvFTD0HjqkRn3TsjZgUxMdpTJlkKtNv+lj3AangJxsS0kCrFnSNnQy+Vy4a/qDSm1CrdXsRifiPaiEYmNt6+CAqIKicTkCCYSs69WKtReVs8exsKeu8EB0cFIPEHNiGk2qCLN2zOA=
 before_install:
 - if [ $TRAVIS_OS_NAME == "linux" ]; then export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0;
   sh -e /etc/init.d/xvfb start; sleep 3; fi
@@ -10,3 +13,12 @@ install:
 - npm prune
 script:
 - npm run build
+addons:
+  coverity_scan:
+    project:
+      name: muhammadsayuti/prime-cli
+      description: Build submitted via Travis CI
+    notification_email: ekoputrapratama27@gmail.com
+    build_command_prepend: ''
+    build_command: gulp build
+    branch_pattern: coverity_scan
