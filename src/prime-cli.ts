@@ -14,7 +14,7 @@ import {PluginCommand} from './commands/plugin';
 import * as logging from 'plylog';
 import {ProjectConfig, ProjectOptions} from 'prime-project-config';
 import {globalArguments, mergeArguments} from './args';
-
+import {ParsedCommand} from 'command-line-commands';
 import commandLineCommands = require('command-line-commands');
 // import {ParsedCommand} from 'command-line-commands';
 
@@ -40,6 +40,9 @@ function parseCLIArgs(commandOptions: any): {[name: string]: string} {
 
     if (commandOptions['extra-dependencies']) {
         parsedOptions.extraDependencies = commandOptions['extra-dependencies'];
+    }
+    if (commandOptions['root-dir']) {
+        parsedOptions.rootDir = commandOptions['root-dir'];
     }
     if (commandOptions['out-dir']) {
         parsedOptions.outDir = commandOptions['out-dir'];
@@ -98,38 +101,48 @@ export class PrimeCli {
         logger.debug('adding command', command.name);
         this.commands.set(command.name, command);
     }
-    getCommandsWithParsedArgs(): string[] {
-        let parsedCommandsName: string[] = [];
+    getCommandsWithoutParsedArgs(): string[] {
+        let withoutParsedCommandsName: string[] = [];
         this.commands.forEach((command) => {
-            if (command.parseArgs) {
-                parsedCommandsName.push(command.name);
+            if (!command.parseArgs) {
+                withoutParsedCommandsName.push(command.name);
             }
         });
-        return parsedCommandsName;
+        return withoutParsedCommandsName;
     }
     _shouldParseArgs() {
-        let exceptions: string[] = this.getCommandsWithParsedArgs();
+        let exceptions: string[] = this.getCommandsWithoutParsedArgs();
         let args = this.args;
-        if (exceptions.indexOf(args[0]) > -1) {
-            return true;
-        } else {
+        if (exceptions.includes(args[0])) {
             return false;
+        } else {
+            return true;
+        }
+    }
+    _shouldParseCLIArgs() {
+        let exceptions: string[] = this.getCommandsWithoutParsedArgs();
+        let arg = (this.args[0].startsWith('--')) ? this.args[0].replace('--','') : this.args[0];
+        if (exceptions.includes(arg) && !arg.includes('help') && !arg.includes('-h')) {
+            return false;
+        } else {
+            return true;
         }
     }
     run(): Promise<any> {
         const helpCommand = this.commands.get('help')!;
         const commandNames = Array.from(this.commands.keys());
-        let parsedArgs: any;
+        let parsedArgs: ParsedCommand|any;
         logger.debug('running...');
-
+        logger.debug('running command with arg',this.args);
         if (this.args.indexOf('--version') > -1) {
             console.log(require('../package.json').version);
             return Promise.resolve();
         }
         try {
             parsedArgs = (this.shouldParseArgs) ? commandLineCommands(commandNames, this.args) : this.args;
+            logger.debug('parseArgs',parsedArgs);
         } catch (error) {
-        // Polymer CLI needs a valid command name to do anything. If the given
+        // Prime CLI needs a valid command name to do anything. If the given
         // command is invalid, run the generalized help command with default
         // config. This should print the general usage information.
             if (error.name === 'INVALID_COMMAND') {
@@ -156,7 +169,7 @@ export class PrimeCli {
 
         const commandDefinitions = mergeArguments([command.args, globalArguments]);
         const commandOptionsRaw = commandLineArgs(commandDefinitions, commandArgs);
-        const commandOptions: any = (this.shouldParseArgs) ? parseCLIArgs(commandOptionsRaw) : this.args.slice(1);
+        const commandOptions: any = (this._shouldParseCLIArgs()) ? parseCLIArgs(commandOptionsRaw) : this.args.slice(1);
         logger.debug(`command options parsed from args:`, commandOptions);
 
         const mergedConfigOptions =
