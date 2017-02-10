@@ -14,6 +14,7 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/gulp build",
+    "prepublish": "npm run build",
     "test": "./node_modules/.bin/gulp test"
   },
   "bin": {
