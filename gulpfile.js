@@ -15,6 +15,7 @@ const fs = require('fs-extra');
 const gulp = require('gulp');
 const path = require('path');
 const typescript = require('gulp-typescript');
+const mocha = require('gulp-mocha');
 const tslint = require('gulp-tslint');
 const prime = require('prime-build');
 const cordovaLib = require('cordova-lib');
@@ -45,6 +46,13 @@ gulp.task('tslint', gulp.series(() => {
     }))
     .pipe(tslint.report())
 }));
+gulp.task('test', gulp.series('build',() =>
+  gulp.src('test/unit/**/*_test.js', {read: false})
+      .pipe(mocha({
+        ui: 'tdd',
+        reporter: 'spec',
+      }))
+));
 gulp.task('depcheck', function(){
   depcheck(__dirname, {
       // "@types/*" dependencies are type declarations that are automatically
