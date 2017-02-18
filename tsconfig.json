@@ -19,9 +19,6 @@
     "rootDir": "src",
     "sourceMap": true
   },
-  "exclude": [
-    "src/init/**/*"
-  ],
   "include": [
     "typings/**/*.ts",
     "src/**/*.ts"
