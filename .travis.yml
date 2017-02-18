@@ -21,4 +21,4 @@ addons:
     notification_email: ekoputrapratama27@gmail.com
     build_command_prepend: './node_modules/.bin/gulp test'
     build_command: ''
-    branch_pattern: master
+    branch_pattern: coverity_scan
