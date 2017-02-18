@@ -128,7 +128,7 @@ Choose a template from a menu:
 
     $ prime init
 
-Create a new project from the 'element' template:
+Create a new project from the 'application' template:
 
     $ prime init application
 
@@ -219,6 +219,9 @@ Install multiple plugins:
 
     $ prime plugin add cordova-plugin-name-1 cordova-plugin-name-2
 
+Remove cordova plugin:
+
+    $ prime plugin remove cordova-plugin-name
 
 ## Templates and Generators
 
