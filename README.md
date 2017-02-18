@@ -1,5 +1,7 @@
 # Polymer Redefined In Mobile Environment
 
+[![Join the chat at https://gitter.im/prime-cli/Lobby](https://badges.gitter.im/prime-cli/Lobby.svg)](https://gitter.im/prime-cli/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Prime-CLI
 
 [![Build Status](https://travis-ci.org/muhammadsayuti/prime-cli.svg?branch=master)](https://travis-ci.org/muhammadsayuti/prime-cli)
