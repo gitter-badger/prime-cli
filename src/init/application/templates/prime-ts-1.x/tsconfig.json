@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"noLib": false,
+		"lib": [
+			"dom"
+		],
+		"declaration": true,
+		"noImplicitAny": false,
+		"removeComments": false,
+		"sourceMap": true,
+		"preserveConstEnums": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"experimentalDecorators": true
+	},
+	"filesGlob": [
+		"app/**/*.ts",
+		"pages/**/*.ts"
+	],
+	"include": [
+		"app/**/*.ts",
+		"pages/**/*.ts"
+	]
+}
